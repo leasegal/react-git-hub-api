@@ -1,12 +1,17 @@
-import React from "react";
+import React, { useState } from "react";
 
 const Search = ({ setGitUser, gitUser }) => {
+
+  
   return (
-    <input
+    <>
+      <input
       type="text"
       value={gitUser}
       onChange={(e) => setGitUser(e.target.value)}
-    />
+      />
+     
+    </>
   );
 };
 
