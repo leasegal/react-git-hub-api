@@ -25,7 +25,7 @@ function App() {
         console.log(`data`, data);
         const { name, avatar_url, created_at, login, public_repos } = data;
 
-        const CheckExistingUser = users.find((user) => user.login == login);
+        const CheckExistingUser = users.find((user) => user.login === login);
         if (CheckExistingUser === undefined) {
           setUsers([
             ...users,
@@ -75,9 +75,9 @@ function App() {
       />
       <br/>
       <Sort users={users} setUsers={setUsers}/>
-      
+
       {users.map((el) => (
-        <User user={el} users={users} setUsers={setUsers} />
+        <User user={el} users={users} setUsers={setUsers} key={el.login} />
       ))}
     </div>
   );

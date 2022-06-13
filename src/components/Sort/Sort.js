@@ -5,14 +5,19 @@ const Sort = ({ users, setUsers }) => {
   const selectEl = useRef(null);
 
   const dateSort = () => {
-    // setUsers();
+     setUsers(users.sort((a, b) => {
+        let da = new Date(a.created_at.split('T')[0]),
+            db = new Date(b.created_at.split('T')[0]);
+        return da - db;
+    }));
+    console.log("users after sort:", users);
   };
 
   const nameSort = () => {
     setUsers(
       users.sort((a, b) => {
         let fa = a.name.toLowerCase(),
-          fb = b.name.toLowerCase();
+         fb = b.name.toLowerCase();
 
         if (fa < fb) {
           return -1;
@@ -23,6 +28,7 @@ const Sort = ({ users, setUsers }) => {
         return 0;
       })
     );
+    console.log("users after sort:", users);
   };
 
   const repositoriesSort = () => {
@@ -50,12 +56,11 @@ const Sort = ({ users, setUsers }) => {
     } else {
       nameSort();
     }
-    console.log(`users after filtered by ${value} are: ${users}`);
   };
-
   return (
     <>
-      <label for="filter">{selectSentence}</label>
+      <label htmlFor="filter">{selectSentence}</label>
+      {/*if i want to put  for="filter"*/}
       <select name="filter" ref={selectEl} onChange={handleChange}>
         <option></option>
         <option value="date">date</option>
